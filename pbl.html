@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PBL Presentation | 2026</title>
+
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap');
+
+body {
+    background-color: #020617;
+    color: #f8fafc;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    scroll-behavior: smooth;
+}
+
+.glass {
+    background: rgba(255,255,255,0.03);
+    backdrop-filter: blur(15px);
+    border: 1px solid rgba(255,255,255,0.1);
+}
+.gradient-text {
+    background: linear-gradient(90deg, #60a5fa, #a855f7);
+    background-clip: text;        /* ADD THIS LINE */
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+
+#timerContainer {
+    background: #ffffff;
+    color: #020617;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.8);
+    border: 3px solid #3b82f6;
+}
+
+@keyframes flicker {
+    0%,100% { background: #ffffff; }
+    50% { background: #fca5a5; }
+}
+
+.timer-warning { animation: flicker 1s infinite; }
+.timer-stop { background:#991b1b !important; color:white !important; }
+</style>
+</head>
+
+<body onload="startTimer()">
+
+<!-- TIMER -->
+<div id="timerContainer" class="fixed bottom-10 right-10 px-8 py-4 rounded-3xl flex items-center gap-4">
+    <i class="fas fa-hourglass-start text-blue-600 text-2xl" id="timerIcon"></i>
+    <span id="displayTime" class="text-4xl font-black font-mono">00:00</span>
+</div>
+
+<main class="max-w-6xl mx-auto px-6 pt-40 pb-20 space-y-24">
+
+<!-- TITLE -->
+<section class="text-center">
+    <div class="inline-block px-4 py-1 border border-slate-700 rounded-full text-slate-400 text-xs mb-6">
+        ID: 2427030184
+    </div>
+
+    <h1 class="text-5xl md:text-6xl font-extrabold mb-6">
+        <span class="gradient-text">AI-Powered Smart Shopping System</span>
+    </h1>
+
+    <p class="text-slate-400 max-w-3xl mx-auto italic">
+        A privacy-preserving edge AI system integrating smart shopping assistance, product tracking,
+        size estimation, and automated billing into one unified retail experience.
+    </p>
+</section>
+
+<!-- PROBLEM -->
+<section class="grid md:grid-cols-2 gap-10">
+    <div class="glass p-8 rounded-3xl">
+        <h2 class="text-2xl font-bold mb-4">Problem Statement</h2>
+        <p class="text-slate-400 leading-relaxed">
+            In large retail environments such as malls and supermarkets, customers often face difficulties
+            in locating products, receiving personalized assistance, and experiencing delays at checkout counters.
+            Traditional retail systems rely heavily on human staff and manual billing, leading to inefficiencies and poor customer experience.
+            There is a need for an intelligent, automated solution that can assist customers, track product activity,
+            and simplify billing using AI and computer vision.
+        </p>
+    </div>
+
+    <div class="space-y-6">
+        <div class="glass p-6 rounded-3xl">
+            <h3 class="text-blue-400 font-bold mb-2">Market Research</h3>
+            <p class="text-sm text-slate-400">
+                Existing solutions include Amazon Go (AI checkout), smart mirrors (H&M, Nike, Burberry),
+                and retail analytics cameras. Computer vision in retail exists but is used in isolated parts.
+            </p>
+        </div>
+
+        <div class="glass p-6 rounded-3xl">
+            <h3 class="text-purple-400 font-bold mb-2">Innovation</h3>
+            <p class="text-sm text-slate-400">
+                Unified AI ecosystem combining shopping assistance, product tracking,
+                body-size analysis, and billing automation in one system. Privacy-first edge processing ensures
+                no cloud facial data storage.
+            </p>
+        </div>
+    </div>
+</section>
+
+<!-- METHODOLOGY -->
+<section>
+    <h2 class="text-3xl font-black text-center mb-10">
+        System <span class="text-blue-500">Methodology</span>
+    </h2>
+
+    <div class="grid md:grid-cols-3 gap-6">
+
+        <div class="glass p-6 rounded-2xl text-center">
+            <i class="fas fa-database text-blue-500 text-3xl mb-3"></i>
+            <h3 class="font-bold mb-2">Dataset / Input</h3>
+            <p class="text-sm text-slate-400">
+                Webcam feed + SQLite product database.
+            </p>
+        </div>
+
+        <div class="glass p-6 rounded-2xl text-center">
+            <i class="fas fa-microchip text-purple-500 text-3xl mb-3"></i>
+            <h3 class="font-bold mb-2">System Workflow</h3>
+            <p class="text-sm text-slate-400">
+                YOLOv8 object detection, AI assistant, Flask backend, HTML dashboard.
+            </p>
+        </div>
+
+        <div class="glass p-6 rounded-2xl text-center border border-green-500">
+            <i class="fab fa-python text-green-500 text-3xl mb-3"></i>
+            <h3 class="font-bold mb-2 text-green-400">Code Files</h3>
+            <p class="text-sm text-slate-400">
+                creatdb.py<br>
+                yoloshop.py
+            </p>
+        </div>
+
+    </div>
+</section>
+
+<!-- RESULTS -->
+<section class="glass p-8 rounded-3xl">
+    <h2 class="text-2xl font-bold mb-8 text-center">Results & Analysis</h2>
+    <div class="h-72">
+        <canvas id="resultsChart"></canvas>
+    </div>
+</section>
+
+<!-- TEAM -->
+<section class="text-center pt-8 border-t border-slate-800">
+    <h2 class="text-sm text-slate-500 mb-8 uppercase">Academic Credits</h2>
+
+    <div class="flex flex-wrap justify-center gap-8">
+        <div class="glass px-8 py-5 rounded-2xl">
+            <p class="text-blue-400 text-sm">Guide</p>
+            <p class="font-bold">Virendra Meghwal</p>
+        </div>
+
+        <div class="glass px-8 py-5 rounded-2xl">
+            <p class="text-slate-400 text-sm">Student</p>
+            <p class="font-bold">Madhavi Krishna</p>
+            <p class="text-xs text-slate-500">2427030184</p>
+        </div>
+    </div>
+</section>
+
+</main>
+
+<script>
+let sec = 0;
+
+function startTimer(){
+    setInterval(()=>{
+        sec++;
+        let m = Math.floor(sec/60);
+        let s = sec%60;
+        document.getElementById("displayTime").innerText =
+            `${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}`;
+    },1000);
+}
+
+const ctx = document.getElementById('resultsChart');
+new Chart(ctx,{
+    type:'bar',
+    data:{
+        labels:['Existing System','Our Solution'],
+        datasets:[{
+            data:[70,92],
+            backgroundColor:['#1e293b','#3b82f6'],
+            borderRadius:10
+        }]
+    },
+    options:{
+        plugins:{legend:{display:false}},
+        scales:{ y:{beginAtZero:true} }
+    }
+});
+</script>
+
+</body>
+</html>
